@@ -23,14 +23,14 @@
         @foreach (var player in Model.Roster) { 
         <section class="player">
             <figure>
-                <img src="@player.avatar" />
+                <img src="@player.Avatar" alt="@player.Name's Logo"/>
             </figure>
-            <p class="name">@player.name</p>
-            <p class="stat">@player.games_played</p>
-            <p class="stat">@player.games_won</p>
-            <p class="stat">@player.kills</p>
-            <p class="stat">@player.deaths</p>
-            <p class="stat">@player.assists</p>
+            <p class="name">@player.Name</p>
+            <p class="stat">@player.GamesPlayed</p>
+            <p class="stat">@player.GamesWon</p>
+            <p class="stat">@player.Kills</p>
+            <p class="stat">@player.Deaths</p>
+            <p class="stat">@player.Assists</p>
         </section>
         }
     </section>

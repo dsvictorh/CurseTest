@@ -1,5 +1,54 @@
-﻿@{
-    ViewBag.Title = "Index";
+﻿@model CurseTeamBrowserUI.Models.TeamListModel
+@{
+    ViewBag.Title = "Admin";
+    ViewBag.Admin = "AdminUser";
 }
 
-<h2>Index</h2>
+<h1>@ViewBag.Title</h1>
+
+<article>
+    <input type="file" id="file-upload" data-bind="value: file"/>
+    <table class="admin-grid">
+    <thead>
+        <tr>
+            <th>Team</th>
+            <th>Avatar</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach: teams">
+        <tr data-bind="click: toggle, css: { active: active() && !editting()}" class="no-selection">
+            <td>
+                <!-- ko if: !editting() -->
+                <!-- ko text: name --><!-- /ko -->
+                <!-- /ko -->
+                <!-- ko if: editting -->
+                <input type="text" data-bind="value: name" />
+                <!-- /ko -->
+            </td>
+            <td>
+                <img data-bind="click: $root.upload, preventBubble: 'click', attr: { src: avatar, alt: name() + ' Logo', title: (editting() ? 'Change Avatar' : '') }" />
+            </td>
+            <td>
+                 <!-- ko if: !editting() -->
+                <button class="edit" data-bind="click: $root.editTeam, preventBubble: 'click'" title="Edit"></button>
+                <button class="delete" data-bind="click: $root.deleteTeam, preventBubble: 'click'" title="Delete"></button>
+                <!-- /ko -->
+                <!-- ko if: editting -->
+                <button class="save" data-bind="click: $root.saveTeam, preventBubble: 'click'" title="Save"></button>
+                <button class="cancel" data-bind="click: $root.cancelTeam, preventBubble: 'click'" title="Cancel"></button>
+                <!-- /ko -->
+            </td>
+        </tr>
+    </tbody>
+</table>
+</article>
+
+@section ViewModelScript{
+<script type="text/javascript">
+    require(['Scripts/app.js', 'Scripts/view-model/admin.js'], function (app, vm) {
+        var viewModel = vm.create(app);
+        app.ko.applyBindings(viewModel);
+    });
+</script>
+}

@@ -17,7 +17,13 @@ namespace CurseTeamBrowserUI.Controllers
 
             var model = new TeamListModel();
             try {
-                model.Teams = TeamService.list();
+                foreach (var team in TeamService.list()) {
+                    model.Teams.Add(new TeamModel() {
+                        Id = team.id,
+                        Name = team.name,
+                        Avatar = team.avatar,
+                    });
+                }
             }catch (Exception ex) {
                 ModelState.AddModelError("", ex);
             }
@@ -39,9 +45,20 @@ namespace CurseTeamBrowserUI.Controllers
                 model.Id = data.id;
                 model.Name = data.name;
                 model.Avatar = data.avatar;
-                model.Roster = PlayerService.list(data.id);
-            }
-            catch (Exception ex) {
+
+                foreach(var player in PlayerService.list(data.id))
+                    model.Roster.Add(new PlayerModel() { 
+                            Id = player.id,
+                            Name = player.name,
+                            Avatar = player.avatar,
+                            GamesPlayed = player.games_played,
+                            GamesWon = player.games_won,
+                            Kills = player.kills,
+                            Deaths = player.deaths,
+                            Assists = player.assists,
+                            IdTeam = player.id_team
+                        });
+            }catch (Exception ex) {
                throw ex;
             }
 

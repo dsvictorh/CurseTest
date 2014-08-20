@@ -5,7 +5,7 @@
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="name" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="avatar" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Association Name="Team_player" Member="Players" Storage="_players" ThisKey="id" OtherKey="id_team" Type="Player" />
+      <Association Name="team_player" Member="Players" ThisKey="id" OtherKey="id_team" Type="Player" />
     </Type>
   </Table>
   <Table Name="dbo.player" Member="Players">
@@ -19,7 +19,7 @@
       <Column Name="deaths" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="assists" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="id_team" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Team_player" Member="Team" ThisKey="id_team" OtherKey="id" Type="Team" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="team_player" Member="Team" ThisKey="id_team" OtherKey="id" Type="Team" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
 </Database>

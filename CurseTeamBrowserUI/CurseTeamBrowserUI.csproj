@@ -131,6 +131,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\PlayerModel.cs" />
     <Compile Include="Models\TeamListModel.cs" />
     <Compile Include="Models\TeamModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -157,8 +158,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\ko.js" />
+    <Content Include="Scripts\model\team.js" />
     <Content Include="Scripts\require.js" />
-    <Content Include="Scripts\view-model\team-details.js" />
+    <Content Include="Scripts\view-model\admin.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

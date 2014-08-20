@@ -12,7 +12,7 @@
     <header>
         <nav id="site-nav">
             <ul>
-                <li class="toggle-modes"><a href="@( ViewBag.Private != null ? "/" : "/TeamAdmin")" title="Change to Admin Mode"></a></li>
+                <li class="toggle-modes @( ViewBag.Admin != null ? "user" : "")"><a href="@( ViewBag.Admin != null ? "/" : "/TeamAdmin")" title="Change to @( ViewBag.Admin != null ? "User" : "Admin") Mode"></a></li>
             </ul>
         </nav>
     </header>

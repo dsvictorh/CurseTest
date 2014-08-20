@@ -10,9 +10,14 @@ namespace CurseTeamBrowserBL.Services
 {
     public class TeamService
     {
-        public static void insert(Team team) {
+        public static void insert(String name, String avatar)
+        {
             try{
                 var context = new CurseDBDataContext();
+                var team = new Team() { 
+                    name = name,
+                    avatar = avatar
+                };
                 context.Teams.InsertOnSubmit(team);
                 context.SubmitChanges();
             }catch(Exception ex){
@@ -20,15 +25,17 @@ namespace CurseTeamBrowserBL.Services
             }
         }
 
-        public static void update(Team team)
+        public static void update(int id, String name, String avatar)
         {
             try
             {
                 var context = new CurseDBDataContext();
-                var update = context.Teams.Single(t => t.id == team.id);
-                update.name = team.name;
-                update.avatar = team.avatar;
-                context.SubmitChanges();
+                var team = context.Teams.Single(t => t.id == id);
+                if (team != null){
+                    team.name = name;
+                    team.avatar = avatar;
+                    context.SubmitChanges();
+                }
 
             }
             catch (Exception ex)
@@ -37,13 +44,16 @@ namespace CurseTeamBrowserBL.Services
             }
         }
 
-        public static void delete(Team team)
+        public static void delete(int id)
         {
             try
             {
                 var context = new CurseDBDataContext();
-                context.Teams.DeleteOnSubmit(team);
-                context.SubmitChanges();
+                var team = context.Teams.Single(t => t.id == id);
+                if(team != null){
+                    context.Teams.DeleteOnSubmit(team);
+                    context.SubmitChanges();
+                }
 
             }
             catch (Exception ex)

@@ -5,12 +5,12 @@
 <h1>@ViewBag.Title</h1>
 <article class="public-team-list">
     @foreach(var team in Model.Teams){
-    <a href="/Team/Details/@team.id">
+    <a href="/Team/Details/@team.Id">
         <section>
             <figure>
-                <img src="@team.avatar" />
+                <img src="@team.Avatar" alt="@team.Name Logo" />
             </figure>
-            <h3>@team.name</h3>
+            <h3>@team.Name</h3>
         </section>
     </a>
     }

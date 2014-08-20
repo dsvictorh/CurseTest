@@ -14,7 +14,6 @@ article {
 }
 
 #site-nav {
-    background: @nav;
     padding: 10px;
 
     ul {
@@ -25,18 +24,24 @@ article {
             font-size: 1em;
 
             a {
-                color: @white;
+                color: @black;
 
                 &:hover {
-                    color: @nav-hover;
+                    color: @mode;
                 }
             }
 
 
             &.toggle-modes {
                 float: right;
-                
-                a{
+
+                &.user {
+                    a {
+                        .awesome-icon('\f007');
+                    }
+                }
+
+                a {
                     .awesome-icon('\f085');
                 }
             }
@@ -165,4 +170,105 @@ footer {
     }
 }
 
+
+.admin-grid {
+    width: 100%;
+
+    tr {
+        height: 45px;
+        cursor: pointer;
+
+        &:nth-child(even) {
+            background: @grid-even;
+        }
+
+        &.active {
+            td:last-child {
+                .awesome-icon('\f077');
+            }
+
+            img {
+                cursor: pointer;
+            }
+        }
+    }
+
+    th {
+        text-align: center;
+        background: @black;
+        color: @white;
+        width: 33%;
+        vertical-align: middle;
+    }
+
+    td {
+        text-align: center;
+        width: 33%;
+        vertical-align: middle;
+
+        &:first-child {
+            text-align: left;
+            padding-left: 5%;
+        }
+
+        &:last-child {
+            position: relative;
+            .awesome-icon('\f078');
+
+            &:after {
+                position: absolute;
+                right: 10px;
+                top: 8px;
+            }
+        }
+
+        img {
+            height: 35px;
+            width: auto;
+            border-radius: 5px;
+            vertical-align: middle;
+        }
+
+        button {
+            background: none;
+            border: 0;
+            font-size: 1.1em;
+            cursor: pointer;
+
+            &.edit {
+                .awesome-icon('\f044');
+                color: @edit;
+
+                &:after {
+                    position: relative;
+                    top: 1.5px;
+                }
+            }
+
+            &.delete {
+                color: @delete;
+                .awesome-icon('\f014');
+            }
+
+            &.cancel {
+                color: @delete;
+                .awesome-icon('\f05e');
+            }
+
+            &.save {
+                color: @save;
+                .awesome-icon('\f0c7');
+            }
+        }
+    }
+}
+
+
+//Removes the highlight when clicking an element several times
+.no-selection {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -ms-user-select: none;
+}
 

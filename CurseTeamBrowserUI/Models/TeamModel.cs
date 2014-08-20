@@ -10,12 +10,12 @@ namespace CurseTeamBrowserUI.Models
     {
 
         public TeamModel() {
-            Roster = new List<Player>();
+            Roster = new List<PlayerModel>();
         }
 
         public int Id { get; set; }
         public String Name { get; set; }
         public String Avatar { get; set; }
-        public List<Player> Roster { get; set; }
+        public List<PlayerModel> Roster { get; set; }
     }
 }

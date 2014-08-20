@@ -9,9 +9,9 @@ namespace CurseTeamBrowserUI.Models
     public class TeamListModel
     {
         public TeamListModel() {
-            Teams = new List<Team>();
+            Teams = new List<TeamModel>();
         }
 
-        public List<Team> Teams { get; set; }
+        public List<TeamModel> Teams { get; set; }
     }
 }

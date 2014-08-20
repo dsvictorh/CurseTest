@@ -103,7 +103,7 @@ namespace CurseTeamBrowserBL.Models
 		
 		private string _avatar;
 		
-		private EntitySet<Player> _players;
+		private EntitySet<Player> _Players;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -119,7 +119,7 @@ namespace CurseTeamBrowserBL.Models
 		
 		public Team()
 		{
-			this._players = new EntitySet<Player>(new Action<Player>(this.attach_players), new Action<Player>(this.detach_players));
+			this._Players = new EntitySet<Player>(new Action<Player>(this.attach_Players), new Action<Player>(this.detach_Players));
 			OnCreated();
 		}
 		
@@ -183,16 +183,16 @@ namespace CurseTeamBrowserBL.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_player", Storage="_players", ThisKey="id", OtherKey="id_team")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="team_player", Storage="_Players", ThisKey="id", OtherKey="id_team")]
 		public EntitySet<Player> Players
 		{
 			get
 			{
-				return this._players;
+				return this._Players;
 			}
 			set
 			{
-				this._players.Assign(value);
+				this._Players.Assign(value);
 			}
 		}
 		
@@ -216,13 +216,13 @@ namespace CurseTeamBrowserBL.Models
 			}
 		}
 		
-		private void attach_players(Player entity)
+		private void attach_Players(Player entity)
 		{
 			this.SendPropertyChanging();
 			entity.Team = this;
 		}
 		
-		private void detach_players(Player entity)
+		private void detach_Players(Player entity)
 		{
 			this.SendPropertyChanging();
 			entity.Team = null;
@@ -469,7 +469,7 @@ namespace CurseTeamBrowserBL.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_player", Storage="_Team", ThisKey="id_team", OtherKey="id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="team_player", Storage="_Team", ThisKey="id_team", OtherKey="id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public Team Team
 		{
 			get
