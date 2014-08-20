@@ -1,0 +1,39 @@
+﻿@model CurseTeamBrowserUI.Models.TeamModel
+@{
+    ViewBag.Title = Model.Name;
+}
+
+<article class="public-team-details">
+    <header>
+        <a href="/" title="Back to Team List"></a>
+         <figure>
+            <img src="@Model.Avatar" />
+        </figure>
+        <h1>@ViewBag.Title</h1>
+    </header>
+    @if(Model.Roster.Count() > 0){
+    <section class="roster">
+        <section class="headers">
+            <h3 class="stat">Games Played</h3>
+            <h3 class="stat">Games Won</h3>
+            <h3 class="stat">Kills</h3>
+            <h3 class="stat">Deaths</h3>
+            <h3 class="stat">Assists</h3>
+        </section>
+        @foreach (var player in Model.Roster) { 
+        <section class="player">
+            <figure>
+                <img src="@player.avatar" />
+            </figure>
+            <p class="name">@player.name</p>
+            <p class="stat">@player.games_played</p>
+            <p class="stat">@player.games_won</p>
+            <p class="stat">@player.kills</p>
+            <p class="stat">@player.deaths</p>
+            <p class="stat">@player.assists</p>
+        </section>
+        }
+    </section>
+    }
+</article>
+

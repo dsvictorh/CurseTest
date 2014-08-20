@@ -1,0 +1,6 @@
+C:\Users\VH\Desktop\Repos\CurseTeamBrowser\CurseTeamBrowser\bin\Debug\CurseTeamBrowser.dll.config
+C:\Users\VH\Desktop\Repos\CurseTeamBrowser\CurseTeamBrowser\bin\Debug\CurseTeamBrowser.dll
+C:\Users\VH\Desktop\Repos\CurseTeamBrowser\CurseTeamBrowser\bin\Debug\CurseTeamBrowser.pdb
+C:\Users\VH\Desktop\Repos\CurseTeamBrowser\CurseTeamBrowser\obj\Debug\CurseTeamBrowser.dll
+C:\Users\VH\Desktop\Repos\CurseTeamBrowser\CurseTeamBrowser\obj\Debug\CurseTeamBrowser.pdb
+C:\Users\VH\Desktop\Repos\CurseTeamBrowser\CurseTeamBrowser\obj\Debug\CurseTeamBrowserBL.csprojResolveAssemblyReference.cache

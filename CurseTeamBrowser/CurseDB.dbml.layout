@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="CurseDB">
+  <DataContextMoniker Name="/CurseDBDataContext" />
+  <nestedChildShapes>
+    <classShape Id="76e4d52b-ade0-45c8-ab78-d123c3984434" absoluteBounds="0.875, 0.625, 2, 1.3862939453125">
+      <DataClassMoniker Name="/CurseDBDataContext/Team" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d643ed58-f9eb-448b-bb81-1cb70974b61b" absoluteBounds="0.88999999999999968, 1.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="fbad2812-f3dc-46d8-81b0-430fcc255f19" absoluteBounds="3.5, 0.625, 2, 2.5401025390625">
+      <DataClassMoniker Name="/CurseDBDataContext/Player" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2c8cbe3c-1e2f-4f5d-8972-1174a99e86ab" absoluteBounds="3.5149999999999997, 1.085, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.875 : 1.31814697265625); (3.5 : 1.31814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CurseDBDataContext/Team/Team_player" />
+      <nodes>
+        <classShapeMoniker Id="76e4d52b-ade0-45c8-ab78-d123c3984434" />
+        <classShapeMoniker Id="fbad2812-f3dc-46d8-81b0-430fcc255f19" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

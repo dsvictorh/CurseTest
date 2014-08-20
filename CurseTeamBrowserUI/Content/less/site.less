@@ -1,0 +1,168 @@
+﻿@import 'utils.less';
+
+//Structure
+main {
+    width: 90%;
+    margin: 0 auto;
+    max-width: 1300px;
+    min-width: 800px;
+    margin-top: 50px;
+}
+
+article {
+    margin: 60px 10px;
+}
+
+#site-nav {
+    background: @nav;
+    padding: 10px;
+
+    ul {
+        .clear;
+
+        li {
+            float: left;
+            font-size: 1em;
+
+            a {
+                color: @white;
+
+                &:hover {
+                    color: @nav-hover;
+                }
+            }
+
+
+            &.toggle-modes {
+                float: right;
+                
+                a{
+                    .awesome-icon('\f085');
+                }
+            }
+        }
+    }
+}
+
+//Layout
+body {
+    font-family: Calibri, Arial, sans-serif;
+    font-size: 1.6em;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 60px;
+}
+
+footer {
+    font-size: 0.5em;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.public-team-list {
+    section {
+        padding: 15px;
+        border: 1px solid @panel-border;
+        border-radius: 30px;
+        margin-bottom: 5px;
+        cursor: pointer;
+
+        &:hover {
+            color: @white;
+            background: @black;
+        }
+
+        figure {
+            display: inline-block;
+            height: 100px;
+            width: 100px;
+            vertical-align: middle;
+
+            img {
+                border-radius: 15px;
+            }
+        }
+
+        h3 {
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 20px;
+            font-size: 1.5em;
+        }
+    }
+}
+
+.public-team-details {
+    header {
+        margin-bottom: 60px;
+        position: relative;
+        .clear;
+
+        a {
+            position: absolute;
+            top: 0;
+            right: 0;
+            .awesome-icon('\f112');
+        }
+
+        figure {
+            height: 200px;
+            width: 200px;
+            float: left;
+        }
+
+        h1 {
+            margin: 90px 30px 0;
+            float: left;
+        }
+    }
+
+    .roster {
+        text-align: right;
+
+        .headers {
+            margin-bottom: 20px;
+        }
+
+        .stat {
+            display: inline-block;
+            margin: 0 2%;
+            width: 8%;
+            text-align: center;
+        }
+
+        .player {
+            padding: 10px 0;
+            background: @black;
+            color: @white;
+            border-radius: 13px;
+            margin-bottom: 5px;
+            .clear;
+
+            figure {
+                width: 50px;
+                margin: 2px 0 0 10px;
+                float: left;
+
+                img {
+                    border-radius: 10px;
+                }
+            }
+
+            p {
+                margin-top: 15px;
+            }
+
+            .name {
+                float: left;
+                margin-left: 8%;
+                width: auto;
+            }
+        }
+    }
+}
+
+

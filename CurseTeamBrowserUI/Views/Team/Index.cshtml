@@ -1,0 +1,17 @@
+﻿@model CurseTeamBrowserUI.Models.TeamListModel 
+@{
+    ViewBag.Title = "Teams Browser";
+}
+<h1>@ViewBag.Title</h1>
+<article class="public-team-list">
+    @foreach(var team in Model.Teams){
+    <a href="/Team/Details/@team.id">
+        <section>
+            <figure>
+                <img src="@team.avatar" />
+            </figure>
+            <h3>@team.name</h3>
+        </section>
+    </a>
+    }
+</article>
