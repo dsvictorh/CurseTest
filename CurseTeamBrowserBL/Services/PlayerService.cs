@@ -10,30 +10,46 @@ namespace CurseTeamBrowserBL.Services
 {
     public class PlayerService
     {
-        public static void insert(Player player) {
+        public static Player insert(string name, int gamesPlayed, int gamesWon, int kills, int deaths, int assists, int idTeam) {
             try{
                 var context = new CurseDBDataContext();
+                var player = new Player() {
+                    name = name,
+                    games_played = gamesPlayed,
+                    games_won = gamesWon,
+                    kills = kills,
+                    deaths = deaths,
+                    assists = assists,
+                    id_team = idTeam
+                };
+
                 context.Players.InsertOnSubmit(player);
                 context.SubmitChanges();
+
+                return player;
             }catch(Exception ex){
                 throw ex;
             }
         }
 
-        public static void update(Player player)
+        public static Player update(int id, string name, int gamesPlayed, int gamesWon, int kills, int deaths, int assists)
         {
             try
             {
                 var context = new CurseDBDataContext();
-                var update = context.Players.Single(p => p.id == player.id);
-                update.name = player.name;
-                update.games_played = player.games_played;
-                update.games_won = player.games_won;
-                update.kills = player.kills;
-                update.deaths = player.deaths;
-                update.assists = player.assists;
-                context.SubmitChanges();
+                var player = context.Players.Single(p => p.id == id);
 
+                if (player != null) {
+                    player.name = name;
+                    player.games_played = gamesPlayed;
+                    player.games_won = gamesWon;
+                    player.kills = kills;
+                    player.deaths = deaths;
+                    player.assists = assists;
+                    context.SubmitChanges();
+                }
+
+                return player;
             }
             catch (Exception ex)
             {
@@ -41,13 +57,16 @@ namespace CurseTeamBrowserBL.Services
             }
         }
 
-        public static void delete(Player player)
+        public static void delete(int id)
         {
             try
             {
                 var context = new CurseDBDataContext();
-                context.Players.DeleteOnSubmit(player);
-                context.SubmitChanges();
+                var player = context.Players.Single(t => t.id == id);
+                if (player != null) {
+                    context.Players.DeleteOnSubmit(player);
+                    context.SubmitChanges();
+                }
 
             }
             catch (Exception ex)

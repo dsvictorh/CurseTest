@@ -8,12 +8,13 @@
         self.teams = ko.observableArray([]);
         self.file = ko.observable();
         self.adding = ko.observable();
+        self.addingPlayer = ko.observable();
 
         self.fileName = ko.computed(function () {
             if (self.file())
                 return self.file().substring(self.file().lastIndexOf('\\') != -1 ? self.file().lastIndexOf('\\') + 1 : self.file().lastIndexOf('/') + 1)
             else
-                return 'Choose Image';
+                return 'Choose...';
         });
 
         self.upload = function (team) {
@@ -89,6 +90,7 @@
     viewModel.prototype.init = function () {
         this.listTeams();
         this.adding(false);
+        this.addingPlayer(false);
     }
 
     //Public access API

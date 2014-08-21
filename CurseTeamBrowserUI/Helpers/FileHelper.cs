@@ -57,5 +57,32 @@ namespace CurseTeamBrowserUI.Helpers
                 if (Directory.Exists(path))
                     Directory.Delete(path, true);
         }
+
+        public static string savePlayerImage(int playerId, int teamId, HttpPostedFileBase file)
+        {
+            if (isImage(file))
+            {
+                var path = HttpContext.Current.Server.MapPath("/Content/images/" + teamId);
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                var image = new Bitmap(file.InputStream);
+                image.Save(Path.Combine(path + "/", playerId + ".png"), ImageFormat.Png);
+            }
+            else
+            {
+                return "The selected file is not an image";
+            }
+
+            return "";
+        }
+
+        public static void deletePlayerImage(int playerId, int teamId)
+        {
+            var path = HttpContext.Current.Server.MapPath("/Content/images/" + teamId);
+            var file = Path.Combine(path + "/", playerId + ".png");
+            if (File.Exists(file))
+                File.Delete(file);
+        }
 	}
 }

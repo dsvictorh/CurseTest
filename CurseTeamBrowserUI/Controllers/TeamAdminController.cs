@@ -24,7 +24,7 @@ namespace CurseTeamBrowserUI.Controllers
             return View();
         }
 
-        public ActionResult ListTeams() {
+        public ContentResult ListTeams() {
             try
             {
                 var model = new TeamListModel();
@@ -60,8 +60,7 @@ namespace CurseTeamBrowserUI.Controllers
             }
         }
 
-        public ActionResult DeleteTeam(int id) { 
-
+        public ContentResult DeleteTeam(int id) { 
             try{
                 TeamService.delete(id);
                 FileHelper.deleteTeamImages(id);
@@ -72,7 +71,7 @@ namespace CurseTeamBrowserUI.Controllers
             }
         }
 
-        public ActionResult SaveTeam(TeamModel team) {
+        public ContentResult SaveTeam(TeamModel team) {
             try
             {
                 var error = "";

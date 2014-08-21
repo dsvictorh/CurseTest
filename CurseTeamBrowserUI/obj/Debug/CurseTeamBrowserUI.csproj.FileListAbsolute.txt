@@ -31,3 +31,4 @@ C:\Users\VH\Desktop\Repos\CurseTeamBrowser\CurseTeamBrowserUI\obj\Debug\CurseTea
 C:\Users\VH\Desktop\Repos\CurseTeamBrowser\CurseTeamBrowserUI\obj\Debug\CurseTeamBrowserUI.pdb
 C:\Users\VH\Desktop\Repos\CurseTeamBrowser\CurseTeamBrowserUI\bin\CurseTeamBrowser.dll
 C:\Users\VH\Desktop\Repos\CurseTeamBrowser\CurseTeamBrowserUI\bin\CurseTeamBrowser.pdb
+C:\Users\VH\Desktop\Repos\CurseTeamBrowser\CurseTeamBrowserUI\bin\DataAnnotationsExtensions.dll

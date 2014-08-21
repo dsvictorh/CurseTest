@@ -18,30 +18,133 @@
     </thead>
     <tbody data-bind="foreach: teams">
         <tr data-bind="click: toggle, css: { active: active() && !editting()}" class="no-selection">
-            <td>
-                <!-- ko if: !editting() -->
-                <!-- ko text: name --><!-- /ko -->
-                <!-- /ko -->
-                <!-- ko if: editting -->
-                <input type="text" data-bind="value: editName" />
-                <!-- /ko -->
-            </td>
-            <td class="change-image">
-                <!-- ko if: id() && (!editting() || (editting() && !$root.file())) -->
-                <img data-bind="click: $root.upload, preventBubble: 'click', attr: { src: avatar, alt: name() + ' Logo', title: (editting() ? 'Change Avatar' : '') }" />
-                <!-- /ko -->
-                <!-- ko if: !id() || editting() && $root.file() -->
-                <span data-bind="click: $root.upload, preventBubble: 'click', text: $root.fileName"></span>
-                <!-- /ko -->
-            </td>
-            <td>
-                 <!-- ko if: !editting() -->
-                <button class="edit" data-bind="click: $root.editTeam, preventBubble: 'click'" title="Edit"></button>
-                <button class="delete" data-bind="click: $root.deleteTeam, preventBubble: 'click'" title="Delete"></button>
-                <!-- /ko -->
-                <!-- ko if: editting -->
-                <button class="save" data-bind="click: $root.saveTeam, preventBubble: 'click'" title="Save"></button>
-                <button class="cancel" data-bind="click: $root.cancelTeam, preventBubble: 'click'" title="Cancel"></button>
+            <td colspan="3">
+                <table>
+                    <tr class="info">
+                        <td>
+                            <!-- ko if: !editting() -->
+                            <!-- ko text: name --><!-- /ko -->
+                            <!-- /ko -->
+                            <!-- ko if: editting -->
+                            <input type="text" maxlength="100" data-bind="value: editName" />
+                            <!-- /ko -->
+                        </td>
+                        <td class="change-image">
+                            <!-- ko if: getId() && (!editting() || (editting() && !$root.file())) -->
+                            <img data-bind="click: $root.upload, preventBubble: 'click', attr: { src: avatar, alt: name() + ' Logo', title: (editting() ? 'Change Avatar' : '') }" />
+                            <!-- /ko -->
+                            <!-- ko if: !getId() || editting() && $root.file() -->
+                            <span data-bind="click: $root.upload, preventBubble: 'click', text: $root.fileName"></span>
+                            <!-- /ko -->
+                        </td>
+                        <td>
+                             <!-- ko if: !editting() -->
+                            <button class="edit" data-bind="click: $root.editTeam, preventBubble: 'click'" title="Edit"></button>
+                            <button class="delete" data-bind="click: $root.deleteTeam, preventBubble: 'click'" title="Delete"></button>
+                            <!-- /ko -->
+                            <!-- ko if: editting -->
+                            <button class="save" data-bind="click: $root.saveTeam, preventBubble: 'click'" title="Save"></button>
+                            <button class="cancel" data-bind="click: $root.cancelTeam, preventBubble: 'click'" title="Cancel"></button>
+                            <!-- /ko -->
+                        </td>
+                    </tr>
+                </table>
+                <!-- ko if: !editting() && active() && !$root.adding() -->
+                <div data-bind="preventBubble: 'click'">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Player</th>
+                                <th>Avatar</th>
+                                <th>Games Played</th>
+                                <th>Games Won</th>
+                                <th>Kills</th>
+                                <th>Deaths</th>
+                                <th>Assists</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach: roster">
+                            <tr>
+                                <td>
+                                    <!-- ko if: !editting() -->
+                                    <!-- ko text: name --><!-- /ko -->
+                                    <!-- /ko -->
+                                    <!-- ko if: editting() -->
+                                    <input type="text" class="player" maxlength="100" data-bind="value: editName" />
+                                    <!-- /ko -->
+                                </td>
+                                <td class="change-image">
+                                    <!-- ko if: getId() && (!editting() || (editting() && !$root.file())) -->
+                                    <img data-bind="click: $root.upload, preventBubble: 'click', attr: { src: avatar, alt: name() + ' Logo', title: (editting() ? 'Change Avatar' : '') }" />
+                                    <!-- /ko -->
+                                    <!-- ko if: !getId() || editting() && $root.file() -->
+                                    <span data-bind="click: $root.upload, preventBubble: 'click', text: $root.fileName"></span>
+                                    <!-- /ko -->
+                                </td>
+                                <td>
+                                    <!-- ko if: !editting() -->
+                                    <!-- ko text: gamesPlayed --><!-- /ko -->
+                                    <!-- /ko -->
+                                    <!-- ko if: editting() -->
+                                    <input type="number" min="0" data-bind="value: editGamesPlayed" />
+                                    <!-- /ko -->
+                                </td>
+                                <td>
+                                    <!-- ko if: !editting() -->
+                                    <!-- ko text: gamesWon --><!-- /ko -->
+                                    <!-- /ko -->
+                                    <!-- ko if: editting() -->
+                                    <input type="number" min="0" data-bind="value: editGamesWon" />
+                                    <!-- /ko -->
+                                </td>
+                                <td>
+                                    <!-- ko if: !editting() -->
+                                    <!-- ko text: kills --><!-- /ko -->
+                                    <!-- /ko -->
+                                    <!-- ko if: editting() -->
+                                    <input type="number" min="0" data-bind="value: editKills" />
+                                    <!-- /ko -->
+                                </td>
+                                <td>
+                                    <!-- ko if: !editting() -->
+                                    <!-- ko text: deaths --><!-- /ko -->
+                                    <!-- /ko -->
+                                    <!-- ko if: editting() -->
+                                    <input type="number" min="0" data-bind="value: editDeaths" />
+                                    <!-- /ko -->
+                                </td>
+                                <td>
+                                    <!-- ko if: !editting() -->
+                                    <!-- ko text: assists --><!-- /ko -->
+                                    <!-- /ko -->
+                                    <!-- ko if: editting() -->
+                                    <input type="number" min="0" data-bind="value: editAssists" />
+                                    <!-- /ko -->
+                                </td>
+                                <td>
+                                     <!-- ko if: !editting() -->
+                                    <button class="edit" data-bind="click: $parent.editPlayer, preventBubble: 'click'" title="Edit"></button>
+                                    <button class="delete" data-bind="click: $parent.deletePlayer, preventBubble: 'click'" title="Delete"></button>
+                                    <!-- /ko -->
+                                    <!-- ko if: editting -->
+                                    <button class="save" data-bind="click: $parent.savePlayer, preventBubble: 'click'" title="Save"></button>
+                                    <button class="cancel" data-bind="click: $parent.cancelPlayer, preventBubble: 'click'" title="Cancel"></button>
+                                    <!-- /ko -->
+                                </td>
+                            </tr>
+                        </tbody>
+                         <!-- ko if: !$parent.addingPlayer() -->
+                        <tfoot>
+                            <tr>
+                                <td colspan="8">
+                                    <button class="add" data-bind="click: addPlayer" title="Add Player"></button>
+                                </td>
+                            </tr>
+                        </tfoot>
+                        <!-- /ko -->
+                    </table>
+                </div>
                 <!-- /ko -->
             </td>
         </tr>

@@ -42,6 +42,7 @@ article {
                 }
 
                 a {
+                    display: inline-block;
                     .awesome-icon('\f085');
                 }
             }
@@ -189,12 +190,10 @@ footer {
         }
 
         &.active {
-            td:last-child {
-                .awesome-icon('\f077');
-            }
-
-            img {
-                cursor: pointer;
+            table {
+                .info > td:last-child {
+                    .awesome-icon('\f077');
+                }
             }
         }
     }
@@ -208,48 +207,125 @@ footer {
     }
 
     tbody {
+        table {
+            width: 100%;
 
-        td {
-            text-align: center;
-            width: 33%;
-            vertical-align: middle;
+            .info > td {
+                text-align: center;
+                width: 33%;
+                vertical-align: middle;
 
-            &:first-child {
-                text-align: left;
-                padding-left: 5%;
-            }
+                &:first-child {
+                    text-align: left;
+                    padding-left: 5%;
+                }
 
-            &:last-child {
-                position: relative;
-                .awesome-icon('\f078');
+                &:last-child {
+                    position: relative;
+                    .awesome-icon('\f078');
 
-                &:after {
-                    position: absolute;
-                    right: 10px;
-                    top: 8px;
+                    &:after {
+                        position: absolute;
+                        right: 10px;
+                        top: 8px;
+                    }
                 }
             }
 
-            &.change-image:hover {
+            .change-image:hover {
                 text-decoration: underline;
+                cursor: pointer;
+            }
+        }
+
+        div {
+            background: @white;
+            width: 80%;
+            margin: 20px 0 20px 18%;
+            box-sizing: border-box;
+            padding: 1%;
+            border-radius: 10px;
+            border: 1px outset @panel-border;
+            font-size: 0.7em;
+            cursor: default;
+
+            tr {
+                height: 35px;
+                cursor: default;
             }
 
-            input {
-                height: 75%;
-                font-size: 0.8em;
+            th {
+                width: 10%;
+
+                &:first-child{
+                    width: 25%;
+                }
+
+                &:last-child{
+                    width: 15%;
+                }
+            }
+
+            tbody td {
+                text-align: center;
+
+                &:first-child {
+                    text-align: left;
+                    padding-left: 5%;
+                }
             }
 
             img {
-                height: 35px;
-                width: 35px;
-                border-radius: 5px;
-                vertical-align: middle;
+                height: 25px;
+                width: 25px;
+            }
+
+            input{
+                width: 55%;
+                text-align: center;
+                padding: 0;
+
+                &.player{
+                    width: 80%;
+                    text-align: left;
+                    padding: 0 5px;
+                }
+            }
+
+            tfoot td {
+                text-align: right;
+                height: 100%;
+            }
+
+            button{
+                &.add {
+                    top: 5px;
+                }
             }
         }
     }
 
-    tfoot td {
-        text-align: right;
+    input {
+        height: 75%;
+        font-size: 0.8em;
+    }
+
+    img {
+        height: 35px;
+        width: 35px;
+        border-radius: 5px;
+        vertical-align: middle;
+    }
+
+    tfoot {
+
+        tr{
+            cursor: default;
+        }
+
+        td {
+            text-align: right;
+        }
     }
 
     button {
