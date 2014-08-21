@@ -8,32 +8,36 @@ using CurseTeamBrowserBL.DataAccess;
 
 namespace CurseTeamBrowserBL.Services
 {
-    public class PlayerService
+    public class TeamService
     {
-        public static void insert(Player player) {
+        public static Team insert(String name)
+        {
             try{
                 var context = new CurseDBDataContext();
-                context.Players.InsertOnSubmit(player);
+                var team = new Team() { 
+                    name = name
+                };
+                context.Teams.InsertOnSubmit(team);
                 context.SubmitChanges();
+
+                return team;
             }catch(Exception ex){
                 throw ex;
             }
         }
 
-        public static void update(Player player)
+        public static Team update(int id, String name)
         {
             try
             {
                 var context = new CurseDBDataContext();
-                var update = context.Players.Single(p => p.id == player.id);
-                update.name = player.name;
-                update.avatar = player.avatar;
-                update.games_played = player.games_played;
-                update.games_won = player.games_won;
-                update.kills = player.kills;
-                update.deaths = player.deaths;
-                update.assists = player.assists;
-                context.SubmitChanges();
+                var team = context.Teams.Single(t => t.id == id);
+                if (team != null){
+                    team.name = name;
+                    context.SubmitChanges();
+                }
+
+                return team;
 
             }
             catch (Exception ex)
@@ -42,13 +46,16 @@ namespace CurseTeamBrowserBL.Services
             }
         }
 
-        public static void delete(Player player)
+        public static void delete(int id)
         {
             try
             {
                 var context = new CurseDBDataContext();
-                context.Players.DeleteOnSubmit(player);
-                context.SubmitChanges();
+                var team = context.Teams.Single(t => t.id == id);
+                if(team != null){
+                    context.Teams.DeleteOnSubmit(team);
+                    context.SubmitChanges();
+                }
 
             }
             catch (Exception ex)
@@ -57,11 +64,11 @@ namespace CurseTeamBrowserBL.Services
             }
         }
 
-        public static Player find(int playerId) {
+        public static Team find(int teamId) {
             try
             {
                 var context = new CurseDBDataContext();
-                return context.Players.SingleOrDefault(p => p.id == playerId);
+                return context.Teams.SingleOrDefault(t => t.id == teamId);
             }
             catch (Exception ex)
             {
@@ -69,13 +76,13 @@ namespace CurseTeamBrowserBL.Services
             }
         }
 
-        public static List<Player> list(int teamId)
+        public static List<Team> list()
         {
             try
             {
                 var context = new CurseDBDataContext();
-                var result = (from p in context.Players where p.id_team == teamId select p);
-                return result.ToList<Player>();
+                var result = (from t in context.Teams select t);
+                return result.ToList<Team>();
             }
             catch (Exception ex)
             {

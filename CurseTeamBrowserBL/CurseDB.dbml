@@ -1,10 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="vh_curse_teams" EntityNamespace="CurseTeamBrowserBL.Models" ContextNamespace="CurseTeamBrowserBL.DataAccess" Class="CurseDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=(local)\SQLEXPRESS;Initial Catalog=vh_curse_teams;Integrated Security=True" SettingsObjectName="CurseTeamBrowser.Properties.Settings" SettingsPropertyName="vh_curse_teamsConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(local);Initial Catalog=vh_curse_teams;Integrated Security=True" SettingsObjectName="CurseTeamBrowser.Properties.Settings" SettingsPropertyName="vh_curse_teamsConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.team" Member="Teams">
     <Type Name="Team">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="name" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="avatar" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Association Name="team_player" Member="Players" ThisKey="id" OtherKey="id_team" Type="Player" />
     </Type>
   </Table>
@@ -12,7 +11,6 @@
     <Type Name="Player">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="name" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="avatar" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="games_won" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="games_played" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="kills" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />

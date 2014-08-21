@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using CurseTeamBrowserBL.Services;
 using CurseTeamBrowserUI.Models;
-using CurseTeamBrowserBL.Models;
+using CurseTeamBrowserUI.Helpers;
 
 namespace CurseTeamBrowserUI.Controllers
 {
@@ -21,7 +21,7 @@ namespace CurseTeamBrowserUI.Controllers
                     model.Teams.Add(new TeamModel() {
                         Id = team.id,
                         Name = team.name,
-                        Avatar = team.avatar,
+                        Avatar = FileHelper.getTeamImage(team.id),
                     });
                 }
             }catch (Exception ex) {
@@ -37,20 +37,20 @@ namespace CurseTeamBrowserUI.Controllers
 
             var model = new TeamModel();
             try {
-                var data = TeamService.find(id);
+                var team = TeamService.find(id);
 
-                if (data == null)
+                if (team == null)
                    return RedirectToAction("Index");
 
-                model.Id = data.id;
-                model.Name = data.name;
-                model.Avatar = data.avatar;
+                model.Id = team.id;
+                model.Name = team.name;
+                model.Avatar = FileHelper.getTeamImage(team.id);
 
-                foreach(var player in PlayerService.list(data.id))
+                foreach(var player in PlayerService.list(team.id))
                     model.Roster.Add(new PlayerModel() { 
                             Id = player.id,
                             Name = player.name,
-                            Avatar = player.avatar,
+                            Avatar = FileHelper.getPlayerImage(player.id_team, player.id),
                             GamesPlayed = player.games_played,
                             GamesWon = player.games_won,
                             Kills = player.kills,

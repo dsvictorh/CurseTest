@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2012 for Web
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurseTeamBrowserBL", "CurseTeamBrowser\CurseTeamBrowserBL.csproj", "{BF79DEBB-8BE3-456D-A4E2-27AD6003B127}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurseTeamBrowserBL", "CurseTeamBrowserBL\CurseTeamBrowserBL.csproj", "{BF79DEBB-8BE3-456D-A4E2-27AD6003B127}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurseTeamBrowserUI", "CurseTeamBrowserUI\CurseTeamBrowserUI.csproj", "{9CF84CDE-E4A2-447C-93A8-A7585CE308F1}"
 EndProject

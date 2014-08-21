@@ -101,8 +101,6 @@ namespace CurseTeamBrowserBL.Models
 		
 		private string _name;
 		
-		private string _avatar;
-		
 		private EntitySet<Player> _Players;
 		
     #region Extensibility Method Definitions
@@ -113,8 +111,6 @@ namespace CurseTeamBrowserBL.Models
     partial void OnidChanged();
     partial void OnnameChanging(string value);
     partial void OnnameChanged();
-    partial void OnavatarChanging(string value);
-    partial void OnavatarChanged();
     #endregion
 		
 		public Team()
@@ -159,26 +155,6 @@ namespace CurseTeamBrowserBL.Models
 					this._name = value;
 					this.SendPropertyChanged("name");
 					this.OnnameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_avatar", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string avatar
-		{
-			get
-			{
-				return this._avatar;
-			}
-			set
-			{
-				if ((this._avatar != value))
-				{
-					this.OnavatarChanging(value);
-					this.SendPropertyChanging();
-					this._avatar = value;
-					this.SendPropertyChanged("avatar");
-					this.OnavatarChanged();
 				}
 			}
 		}
@@ -239,8 +215,6 @@ namespace CurseTeamBrowserBL.Models
 		
 		private string _name;
 		
-		private string _avatar;
-		
 		private int _games_won;
 		
 		private int _games_played;
@@ -263,8 +237,6 @@ namespace CurseTeamBrowserBL.Models
     partial void OnidChanged();
     partial void OnnameChanging(string value);
     partial void OnnameChanged();
-    partial void OnavatarChanging(string value);
-    partial void OnavatarChanged();
     partial void Ongames_wonChanging(int value);
     partial void Ongames_wonChanged();
     partial void Ongames_playedChanging(int value);
@@ -321,26 +293,6 @@ namespace CurseTeamBrowserBL.Models
 					this._name = value;
 					this.SendPropertyChanged("name");
 					this.OnnameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_avatar", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string avatar
-		{
-			get
-			{
-				return this._avatar;
-			}
-			set
-			{
-				if ((this._avatar != value))
-				{
-					this.OnavatarChanging(value);
-					this.SendPropertyChanging();
-					this._avatar = value;
-					this.SendPropertyChanged("avatar");
-					this.OnavatarChanged();
 				}
 			}
 		}
