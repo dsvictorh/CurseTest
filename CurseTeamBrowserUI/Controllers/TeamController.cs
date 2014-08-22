@@ -14,7 +14,6 @@ namespace CurseTeamBrowserUI.Controllers
 
         public ActionResult Index()
         {
-
             var model = new TeamListModel();
             try {
                 foreach (var team in TeamService.list()) {
@@ -25,7 +24,7 @@ namespace CurseTeamBrowserUI.Controllers
                     });
                 }
             }catch (Exception ex) {
-                ModelState.AddModelError("", ex);
+                return Redirect("/Team/Error?error=" + ex.Message);
             }
             
            
@@ -59,9 +58,14 @@ namespace CurseTeamBrowserUI.Controllers
                             IdTeam = player.id_team
                         });
             }catch (Exception ex) {
-               throw ex;
+                return Redirect("/Team/Error?error=" + ex.Message);
             }
 
+            return View(model);
+        }
+
+        public ActionResult Error(String error) {
+            var model = new ErrorModel(error);
             return View(model);
         }
     }

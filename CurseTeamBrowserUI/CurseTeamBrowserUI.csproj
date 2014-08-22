@@ -135,6 +135,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ErrorModel.cs" />
     <Compile Include="Models\PlayerModel.cs" />
     <Compile Include="Models\TeamListModel.cs" />
     <Compile Include="Models\TeamModel.cs" />
@@ -184,6 +185,7 @@
     <Content Include="Views\Team\Index.cshtml" />
     <Content Include="Views\Team\Details.cshtml" />
     <Content Include="Views\TeamAdmin\Index.cshtml" />
+    <Content Include="Views\Team\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

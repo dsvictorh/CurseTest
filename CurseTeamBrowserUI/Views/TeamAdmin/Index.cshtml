@@ -17,24 +17,24 @@
         </tr>
     </thead>
     <tbody data-bind="foreach: teams">
-        <tr data-bind="click: toggle, css: { active: active() && !editting()}" class="no-selection">
+        <tr data-bind="click: $root.toggleTeam, css: { active: active() && !editting() && !$root.adding()}" class="no-selection">
             <td colspan="3">
                 <table>
                     <tr class="info">
                         <td>
                             <!-- ko if: !editting() -->
-                            <!-- ko text: name --><!-- /ko -->
+                            <span data-bind="text: name, attr: { title: name }"></span>
                             <!-- /ko -->
                             <!-- ko if: editting -->
-                            <input type="text" maxlength="100" data-bind="value: editName" />
+                            <input type="text" maxlength="25" data-bind="value: editName" />
                             <!-- /ko -->
                         </td>
-                        <td class="change-image">
+                        <td class="change-image" data-bind="css: { editting: editting() }">
                             <!-- ko if: getId() && (!editting() || (editting() && !$root.file())) -->
                             <img data-bind="click: $root.upload, preventBubble: 'click', attr: { src: avatar, alt: name() + ' Logo', title: (editting() ? 'Change Avatar' : '') }" />
                             <!-- /ko -->
                             <!-- ko if: !getId() || editting() && $root.file() -->
-                            <span data-bind="click: $root.upload, preventBubble: 'click', text: $root.fileName"></span>
+                            <span data-bind="click: $root.upload, preventBubble: 'click', text: $root.fileName, attr: { title: $root.fileName }"></span>
                             <!-- /ko -->
                         </td>
                         <td>
@@ -68,18 +68,18 @@
                             <tr>
                                 <td>
                                     <!-- ko if: !editting() -->
-                                    <!-- ko text: name --><!-- /ko -->
+                                     <span data-bind="text: name, attr: { title: name }"></span>
                                     <!-- /ko -->
                                     <!-- ko if: editting() -->
-                                    <input type="text" class="player" maxlength="100" data-bind="value: editName" />
+                                    <input type="text" class="player" maxlength="25" data-bind="value: editName" />
                                     <!-- /ko -->
                                 </td>
-                                <td class="change-image">
+                                <td class="change-image" data-bind="css: { editting: editting() }">
                                     <!-- ko if: getId() && (!editting() || (editting() && !$root.file())) -->
-                                    <img data-bind="click: $root.upload, preventBubble: 'click', attr: { src: avatar, alt: name() + ' Logo', title: (editting() ? 'Change Avatar' : '') }" />
+                                    <img data-bind="click: $root.upload, attr: { src: avatar, alt: name() + ' Logo', title: (editting() ? 'Change Avatar' : '') }" />
                                     <!-- /ko -->
                                     <!-- ko if: !getId() || editting() && $root.file() -->
-                                    <span data-bind="click: $root.upload, preventBubble: 'click', text: $root.fileName"></span>
+                                    <span data-bind="click: $root.upload, text: $root.fileName, attr: { title: $root.fileName }"></span>
                                     <!-- /ko -->
                                 </td>
                                 <td>
@@ -87,7 +87,7 @@
                                     <!-- ko text: gamesPlayed --><!-- /ko -->
                                     <!-- /ko -->
                                     <!-- ko if: editting() -->
-                                    <input type="number" min="0" data-bind="value: editGamesPlayed" />
+                                    <input type="number" min="0" data-bind="value: editGamesPlayed, valueUpdate: ['keypress', 'input']" />
                                     <!-- /ko -->
                                 </td>
                                 <td>
@@ -95,7 +95,7 @@
                                     <!-- ko text: gamesWon --><!-- /ko -->
                                     <!-- /ko -->
                                     <!-- ko if: editting() -->
-                                    <input type="number" min="0" data-bind="value: editGamesWon" />
+                                    <input type="number" min="0" data-bind="value: editGamesWon, valueUpdate: ['keypress', 'input'], attr: { max: editGamesPlayed() || 0 }" />
                                     <!-- /ko -->
                                 </td>
                                 <td>
@@ -103,7 +103,7 @@
                                     <!-- ko text: kills --><!-- /ko -->
                                     <!-- /ko -->
                                     <!-- ko if: editting() -->
-                                    <input type="number" min="0" data-bind="value: editKills" />
+                                    <input type="number" min="0" data-bind="value: editKills, valueUpdate: ['keypress', 'input']" />
                                     <!-- /ko -->
                                 </td>
                                 <td>
@@ -111,7 +111,7 @@
                                     <!-- ko text: deaths --><!-- /ko -->
                                     <!-- /ko -->
                                     <!-- ko if: editting() -->
-                                    <input type="number" min="0" data-bind="value: editDeaths" />
+                                    <input type="number" min="0" data-bind="value: editDeaths, valueUpdate: ['keypress', 'input']" />
                                     <!-- /ko -->
                                 </td>
                                 <td>
@@ -119,17 +119,17 @@
                                     <!-- ko text: assists --><!-- /ko -->
                                     <!-- /ko -->
                                     <!-- ko if: editting() -->
-                                    <input type="number" min="0" data-bind="value: editAssists" />
+                                    <input type="number" min="0" data-bind="value: editAssists, valueUpdate: ['keypress', 'input']" />
                                     <!-- /ko -->
                                 </td>
                                 <td>
                                      <!-- ko if: !editting() -->
-                                    <button class="edit" data-bind="click: $parent.editPlayer, preventBubble: 'click'" title="Edit"></button>
-                                    <button class="delete" data-bind="click: $parent.deletePlayer, preventBubble: 'click'" title="Delete"></button>
+                                    <button class="edit" data-bind="click: function(player){ $parent.editPlayer(player); $root.file(''); }" title="Edit"></button>
+                                    <button class="delete" data-bind="click: function(player){ $parent.deletePlayer(player); $root.file(''); }" title="Delete"></button>
                                     <!-- /ko -->
                                     <!-- ko if: editting -->
-                                    <button class="save" data-bind="click: $parent.savePlayer, preventBubble: 'click'" title="Save"></button>
-                                    <button class="cancel" data-bind="click: $parent.cancelPlayer, preventBubble: 'click'" title="Cancel"></button>
+                                    <button class="save" data-bind="click: function(player){ $parent.savePlayer(player); $root.file(''); }" title="Save"></button>
+                                    <button class="cancel" data-bind="click:function(player){ $parent.cancelPlayer(player); $root.file(''); }" title="Cancel"></button>
                                     <!-- /ko -->
                                 </td>
                             </tr>
@@ -138,7 +138,7 @@
                         <tfoot>
                             <tr>
                                 <td colspan="8">
-                                    <button class="add" data-bind="click: addPlayer" title="Add Player"></button>
+                                    <button class="add" data-bind="click: function (player) { addPlayer(player); $root.file(''); }" title="Add Player"></button>
                                 </td>
                             </tr>
                         </tfoot>

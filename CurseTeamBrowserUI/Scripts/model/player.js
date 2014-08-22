@@ -25,13 +25,61 @@
             return id;
         }
 
+        self.editGamesPlayedFix = ko.computed(function () {
+            if (!parseInt(self.editGamesPlayed()))
+                self.editGamesPlayed(0);
+            else
+                self.editGamesPlayed(parseInt(self.editGamesPlayed()));
+
+            return self.editGamesPlayed();
+        });
+
+        self.editGamesWonFix = ko.computed(function () {
+            if (parseInt(self.editGamesWon()) > parseInt(self.editGamesPlayed()))
+                self.editGamesWon(self.editGamesPlayed());
+            else if(!parseInt(self.editGamesWon()))
+                self.editGamesWon(0);
+            else
+                self.editGamesWon(parseInt(self.editGamesWon()));
+     
+
+            return self.editGamesWon();
+        });
+
+        self.editKillsFix = ko.computed(function () {
+            if (!parseInt(self.editKills()) || parseInt(self.editGamesPlayed()) < 1)
+                self.editKills(0);
+            else
+                self.editKills(parseInt(self.editKills()));
+
+            return self.editKills();
+        });
+
+        self.editDeathsFix = ko.computed(function () {
+            if (!parseInt(self.editDeaths()) || parseInt(self.editGamesPlayed()) < 1)
+                self.editDeaths(0);
+            else
+                self.editDeaths(parseInt(self.editDeaths()));
+
+            return self.editDeaths();
+        });
+
+        self.editAssistsFix = ko.computed(function () {
+            if (!parseInt(self.editAssists()) || parseInt(self.editGamesPlayed()) < 1)
+                self.editAssists(0);
+            else
+                self.editAssists(parseInt(self.editAssists()));
+
+            return self.editAssists();
+        });
+
         self.edit = function () {
             self.editName(self.name());
-            self.editGamesPlayed(self.gamesPlayed());
-            self.editGamesWon(self.gamesWon());
-            self.editKills(self.kills());
-            self.editDeaths(self.deaths());
-            self.editAssists(self.assists());
+            self.editGamesPlayed(self.gamesPlayed() || '0');
+            self.editGamesWon(self.gamesWon() || '0');
+            self.editKills(self.kills() || '0');
+            self.editDeaths(self.deaths() || '0');
+            self.editAssists(self.assists() || '0');
             self.editting(true);
         }
 
@@ -58,12 +106,12 @@
             var player = new FormData();
             player.append('Id', id || '');
             player.append('Name', self.editName() || '');
-            player.append('GamesPlayed', self.editGamesPlayed() || '0');
-            player.append('GamesWon', self.editGamesWon() || '0');
-            player.append('Kills', self.editKills() || '0');
-            player.append('Deaths', self.editDeaths() || '0');
-            player.append('Assists', self.editAssists() || '0');
-            player.append('IdTeam', self.idTeam() || '0');
+            player.append('GamesPlayed', self.editGamesPlayed());
+            player.append('GamesWon', self.editGamesWon());
+            player.append('Kills', self.editKills());
+            player.append('Deaths', self.editDeaths());
+            player.append('Assists', self.editAssists());
+            player.append('IdTeam', self.idTeam());
             player.append('ImageUpload', $('#file-upload')[0].files[0] || '');
 
             $.ajax({

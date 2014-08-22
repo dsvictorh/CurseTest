@@ -26,7 +26,8 @@
         }
 
         self.toggle = function () {
-            self.active(!self.active());
+            if(!self.editting())
+                self.active(!self.active());
         }
 
         self.delete = function (success) {

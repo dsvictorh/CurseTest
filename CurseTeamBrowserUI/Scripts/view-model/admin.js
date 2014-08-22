@@ -22,6 +22,11 @@
                 $('#file-upload').trigger('click');
         };
 
+        self.toggleTeam = function (team) {
+            if (!self.adding())
+                team.toggle();
+        }
+
         self.listTeams = function () {
             $.ajax({
                 url: '/TeamAdmin/ListTeams',

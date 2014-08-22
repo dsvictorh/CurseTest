@@ -13,7 +13,7 @@ namespace CurseTeamBrowserUI.Models
 
         [Required(ErrorMessage="Player's name is required")]
         [DataType(DataType.Text, ErrorMessage = "Player name is a text field")]
-        [StringLength(100, ErrorMessage = "Player's name cannot contain more than 100 characters")]
+        [StringLength(25, ErrorMessage = "Player's name cannot contain more than 25 characters")]
         public String Name { get; set; }
         
         public String Avatar { get; set; }

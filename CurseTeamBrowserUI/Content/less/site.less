@@ -180,6 +180,7 @@ footer {
 
 .admin-grid {
     width: 100%;
+    table-layout: fixed;
 
     tr {
         height: 45px;
@@ -202,17 +203,23 @@ footer {
         text-align: center;
         background: @black;
         color: @white;
-        width: 33%;
         vertical-align: middle;
+        width: 33%;
+    }
+    
+    td{
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
     }
 
     tbody {
         table {
             width: 100%;
+            table-layout: fixed;
 
             .info > td {
                 text-align: center;
-                width: 33%;
                 vertical-align: middle;
 
                 &:first-child {
@@ -232,7 +239,7 @@ footer {
                 }
             }
 
-            .change-image:hover {
+            .change-image.editting:hover {
                 text-decoration: underline;
                 cursor: pointer;
             }
@@ -254,8 +261,9 @@ footer {
                 cursor: default;
             }
 
-            th {
+            th{
                 width: 10%;
+                white-space: normal;
 
                 &:first-child{
                     width: 25%;
@@ -369,6 +377,38 @@ footer {
     }
 }
 
+.error-page {
+    text-align: center;
+    background: @panel-border;
+    padding: 30px;
+    border-radius: 20px;
+
+    h1 {
+        margin: 0;
+    }
+
+    h3 {
+        margin-bottom: 60px;
+    }
+
+    a {
+        color: @save;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    p {
+        text-align: left;
+        padding: 10px;
+        background: @error-page-panel;
+        color: @error-page-panel-text;
+        border-radius: 8px;
+        font-size: 0.5em;
+    }
+}
+
 
 //Removes the highlight when clicking an element several times
 .no-selection {
@@ -380,5 +420,5 @@ footer {
 
 //Invisible file control
 #file-upload {
-    display: none;
+    opacity: 0;
 }

@@ -1,0 +1,11 @@
+﻿@model CurseTeamBrowserUI.Models.ErrorModel
+@{
+    ViewBag.Title = "Error";
+}
+
+<article class="error-page">
+    <h1>There Was an error handling your request</h1>
+    <h3>Click <a href="/">here</a> to go back or try again later</h3>
+
+    <p>@Model.ErrorMessage</p>
+</article>
